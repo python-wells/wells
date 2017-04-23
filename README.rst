@@ -1,6 +1,21 @@
 wells python utilities
 =======================
 
+.. image:: https://img.shields.io/pypi/v/wells.svg
+    :target: https://pypi.python.org/pypi/wells
+
+.. image:: https://img.shields.io/pypi/l/wells.svg
+    :target: https://pypi.python.org/pypi/wells
+
+.. image:: https://img.shields.io/pypi/wheel/wells.svg
+    :target: https://pypi.python.org/pypi/wells
+
+.. image:: https://img.shields.io/pypi/pyversions/wells.svg
+    :target: https://pypi.python.org/pypi/wells
+
+.. image:: https://travis-ci.org/python-wells/wells.svg?branch=master
+    :target: https://travis-ci.org/python-wells/wells
+
 wells is a collection of python utilities:
 
 Most common and general utilities:
@@ -29,11 +44,25 @@ To install this package:
 
    $ pip install wells
 
+Baisc Usage
+------------
+
+.. code-block:: sh
+
+   >>> import datetime
+   >>> from wells.utils import sha1sum, to_json
+   >>> sha1sum("abc")
+   'a9993e364706816aba3e25717850c26c9cd0d89d'
+   >>> to_json({"start_date": datetime.date.today()})
+   '{"start_date": "2017-04-23"}'
+   >>> import wells.utils
+   >>> help(wells.utils)
+
 Documentation
 -------------
 
-No external documentation available. type help(<module_name>) to get
-auto-generated document. You can also read examples in unit tests.
+External documentation is not available yet. Type help(<module_name>) to get
+document in python REPL. You can also read examples in unit tests.
 
 ChangeLog
 ---------

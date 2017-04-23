@@ -11,6 +11,8 @@ default: test
 dist:
 	$(PYTHON) setup.py -q sdist
 	$(PYTHON) setup.py -q bdist_wheel --universal
+upload:
+	$(VENV)/bin/twine upload dist/*
 build:
 
 bootstrap:
@@ -35,4 +37,4 @@ TAGS:
 	etags -R --exclude=static $(PYTHON_MODULES)
 loc:
 	cloc wells
-.PHONY: default dist build bootstrap check pylint pylint-full test tox install-git-hooks clean TAGS loc
+.PHONY: default dist upload build bootstrap check pylint pylint-full test tox install-git-hooks clean TAGS loc
