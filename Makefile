@@ -8,10 +8,10 @@ PYLINT = env PYTHONPATH=$(PYTHONPATH) $(VENV)/bin/pylint --disable=missing-docst
 PEP8 = env PYTHONPATH=$(PYTHONPATH) $(VENV)/bin/pep8 --repeat --ignore=E202,E501
 
 default: test
-dist:
+dist: bootstrap
 	$(PYTHON) setup.py -q sdist
 	$(PYTHON) setup.py -q bdist_wheel --universal
-upload:
+upload: dist
 	$(VENV)/bin/twine upload dist/*
 build:
 
