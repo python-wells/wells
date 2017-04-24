@@ -9,6 +9,14 @@ from .utils import (uniq, group, first, len_gen, gen_prefixes,
                     is_valid_uuid, sha1sum, md5sum, hmac_sha256_hex,
                     seconds, drop_prefix, string_to_list,
                     ensure_str, ensure_byte, to_json)
+from .utils import flatten
+
+
+# test for flatten
+def test_flatten():
+    assert list(flatten([[1, 2, 3], [4, 5]])) == [1, 2, 3, 4, 5]
+    assert list(flatten([[1, 2, 3], []])) == [1, 2, 3]
+    assert list(flatten([[1, 2, 3], [], [6]])) == [1, 2, 3, 6]
 
 
 # test for drop_prefix

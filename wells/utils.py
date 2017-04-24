@@ -79,6 +79,38 @@ def is_valid_uuid(text):
         return False
 
 
+def get_week_number():
+    """return current week number.
+
+    """
+    return datetime.date.today().isocalendar()[1]
+
+
+def today():
+    """return today's date in YYYY-MM-DD format.
+
+    """
+    return datetime.date.today().isoformat()
+
+
+def tomorrow():
+    """return tomorrow's date in YYYY-MM-DD format.
+
+    """
+    today = datetime.date.today()     # pylint: disable=redefined-outer-name
+    d = today + datetime.timedelta(days=1)
+    return d.isoformat()
+
+
+def yesterday():
+    """return yesterday's date in YYYY-MM-DD format.
+
+    """
+    today = datetime.date.today()     # pylint: disable=redefined-outer-name
+    d = today - datetime.timedelta(days=1)
+    return d.isoformat()
+
+
 def get_ts_microseconds():
     """return current timestamp in microsecond since Epoch.
 
@@ -189,7 +221,9 @@ def uniq(iterable):
 
 
 def flatten(list_of_lists):
-    "Flatten one level of nesting"
+    """flatten one level of nesting.
+
+    """
     return chain.from_iterable(list_of_lists)
 
 
