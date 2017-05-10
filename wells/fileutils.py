@@ -11,6 +11,16 @@ import os.path
 from .utils import ok, error
 
 
+def create_dir_maybe(dir_, mode=None):
+    """create dir if it doesn't exist.
+
+    This may raise IOError when dir can not be created.
+
+    """
+    if not os.path.exists(dir_):
+        os.makedirs(dir_, mode)
+
+
 def safe_read_file(fn, decode=True):
     """read a file safely.
 
