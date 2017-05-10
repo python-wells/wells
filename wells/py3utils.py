@@ -25,3 +25,12 @@ except NameError:
 
 
 basestring_type = str if IS_PY3 else basestring    # pylint: disable=undefined-variable
+
+if IS_PY2:
+    import cStringIO    # pylint: disable=import-error
+    BytesIO = cStringIO.StringIO
+    StringIO = cStringIO.StringIO
+else:
+    import io
+    BytesIO = io.BytesIO
+    StringIO = io.StringIO
