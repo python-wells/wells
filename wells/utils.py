@@ -207,6 +207,22 @@ def seconds(time_duration):
     raise ValueError("invalid time_duration: %s" % (time_duration,))
 
 
+def date_to_datetime(d):
+    """convert date to datetime.
+
+    """
+    return datetime.datetime.combine(d, datetime.datetime.min.time())
+
+
+def seconds_to_0000():
+    """seconds to next 00:00.
+
+    """
+    d = datetime.date.today() + datetime.timedelta(days=1)
+    now = datetime.datetime.now()
+    return int((date_to_datetime(d) - now).total_seconds())
+
+
 def uniq(iterable):
     """return an iterable that does not have duplicated elements.
 
