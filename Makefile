@@ -9,6 +9,7 @@ PEP8 = env PYTHONPATH=$(PYTHONPATH) $(VENV)/bin/pep8 --repeat --ignore=E202,E501
 
 default: test
 dist: bootstrap
+	rm -rf dist/*
 	$(PYTHON) setup.py -q sdist
 	$(PYTHON) setup.py -q bdist_wheel --universal
 upload: dist
