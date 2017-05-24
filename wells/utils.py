@@ -18,7 +18,7 @@ import hmac
 import json
 from itertools import cycle, chain, repeat
 
-from .py3utils import izip, newstr, basestring_type
+from .py3utils import izip, newstr, basestring_type, IS_PY2
 
 logger = logging.getLogger(__name__)
 
@@ -86,15 +86,23 @@ def get_week_number():
     return datetime.date.today().isocalendar()[1]
 
 
+def now():
+    """return current datetime in 'YYYY-MM-DD HH:MM:SS' format.
+
+    """
+    sep = b' ' if IS_PY2 else ' '
+    return datetime.datetime.now().isoformat(sep)[:19]
+
+
 def today():
-    """return today's date in YYYY-MM-DD format.
+    """return today's date in 'YYYY-MM-DD' format.
 
     """
     return datetime.date.today().isoformat()
 
 
 def tomorrow():
-    """return tomorrow's date in YYYY-MM-DD format.
+    """return tomorrow's date in 'YYYY-MM-DD' format.
 
     """
     today = datetime.date.today()     # pylint: disable=redefined-outer-name
@@ -219,8 +227,8 @@ def seconds_to_0000():
 
     """
     d = datetime.date.today() + datetime.timedelta(days=1)
-    now = datetime.datetime.now()
-    return int((date_to_datetime(d) - now).total_seconds())
+    now_ = datetime.datetime.now()
+    return int((date_to_datetime(d) - now_).total_seconds())
 
 
 def uniq(iterable):

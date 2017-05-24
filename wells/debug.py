@@ -49,3 +49,19 @@ def trace_time(brief=True, threshold=0.02):
                                      func.__name__, args, kwargs, duration)
         return wrapper
     return gen_wrapper
+
+
+def timeit(func):
+    """a decorator that returns func runtime in seconds.
+
+    It changes function's return value to be a tuple of:
+    (time_cost_in_seconds_as_float, original_return_value)
+
+    """
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        _start_time = time.time()
+        r = func(*args, **kwargs)
+        _end_time = time.time()
+        return _end_time - _start_time, r
+    return wrapper

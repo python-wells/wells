@@ -10,6 +10,11 @@ from .utils import (uniq, group, first, len_gen, gen_prefixes,
                     seconds, drop_prefix, string_to_list,
                     ensure_str, ensure_byte, to_json)
 from .utils import flatten
+from .utils import now
+
+
+def test_now():
+    assert len(now()) == len('YYYY-MM-DD HH:MM:SS')
 
 
 # test for flatten
