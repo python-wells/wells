@@ -1,0 +1,15 @@
+* COMMENT -*- mode: org -*-
+#+Date: 2017-08-30
+Time-stamp: <2017-08-30>
+#+STARTUP: content
+* notes                                                               :entry:
+* later                                                               :entry:
+* current                                                             :entry:
+** 
+** 2017-08-30 choose a license and apply the license.
+- LGPL or Apache2 License
+- I want the code changes to the lib to be free.
+  the software that uses the lib can be non-free.
+- 
+* done                                                                :entry:
+* wontfix                                                             :entry:
