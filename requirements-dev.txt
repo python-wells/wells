@@ -1,7 +1,7 @@
 # all requirements are for developing wells.
 # if you just want to use wells, there is no dependence.
 pytest
-pep8
+pycodestyle
 pylint
 tox
 twine

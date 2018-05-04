@@ -5,6 +5,7 @@
 configuration manager
 """
 
+import os
 import os.path
 import logging
 
@@ -17,6 +18,15 @@ logger = logging.getLogger(__name__)
 
 class BadConfig(Exception):
     pass
+
+
+def env_var_key(key):
+    """return env variable name for given config key.
+
+    . and - is replaced by _.
+
+    """
+    return key.replace(".", "_").replace("-", "_").upper()
 
 
 class ConfigurationManger(object):
@@ -67,7 +77,7 @@ class ConfigurationManger(object):
                 logger.warning(u"ignoring unsupported key: %s", k)
         self.data = defaults or {}
         self.configfiles = configfiles or []
-        for fn in configfiles:
+        for fn in self.configfiles:
             r = fileutils.safe_read_file(fn)
             if r['ok']:
                 self.read_file_content(r['content'])
@@ -84,6 +94,12 @@ class ConfigurationManger(object):
             msg = u"missing required key: %s" % (", ".join(missing_keys),)
             logger.error(u"%s", msg)
             raise BadConfig(msg)
+        # if there is env var for a key, override default and file based
+        # config.
+        for key in self.data:
+            v = os.getenv(env_var_key(key))
+            if v:
+                self.data[key] = v
 
     def getstr(self, key, default=None):
         return self.data.get(key, default)

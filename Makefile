@@ -5,7 +5,7 @@ PYTHON = env PYTHONPATH=$(PYTHONPATH) $(VENV)/bin/python
 PIP = env PYTHONPATH=$(PYTHONPATH) $(VENV)/bin/pip
 PYTEST = env PYTHONPATH=$(PYTHONPATH) PYTEST=1 $(VENV)/bin/py.test
 PYLINT = env PYTHONPATH=$(PYTHONPATH) $(VENV)/bin/pylint --disable=missing-docstring,invalid-name,global-statement --msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}"
-PEP8 = env PYTHONPATH=$(PYTHONPATH) $(VENV)/bin/pep8 --repeat --ignore=E202,E501
+PEP8 = env PYTHONPATH=$(PYTHONPATH) $(VENV)/bin/pycodestyle --repeat --ignore=E202,E501,W504
 
 default: test
 dist: bootstrap
