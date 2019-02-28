@@ -476,19 +476,18 @@ def retry(times=3, interval=(1, 5, 10), error_dict_support=True):
                         logger.error("max retry reached, func=%s, retry=%s",
                                      func.__name__, retry_time)
                         raise
-                    else:
-                        logger.exception(
-                            "will retry because function raised exception")
-                        try:
-                            seconds = next(interval_iter)  # pylint: disable=redefined-outer-name
-                        except StopIteration:
-                            interval_iter = repeat(seconds)
-                        time.sleep(seconds)
-                        retry_time += 1
-                        logger.debug("sleeping %s before auto retry", seconds)
-                        logger.info(
-                            "auto retry, func=%s, retry=%s, last_sleep=%s",
-                            func.__name__, retry_time, seconds)
+                    logger.exception(
+                        "will retry because function raised exception")
+                    try:
+                        seconds = next(interval_iter)  # pylint: disable=redefined-outer-name
+                    except StopIteration:
+                        interval_iter = repeat(seconds)
+                    time.sleep(seconds)
+                    retry_time += 1
+                    logger.debug("sleeping %s before auto retry", seconds)
+                    logger.info(
+                        "auto retry, func=%s, retry=%s, last_sleep=%s",
+                        func.__name__, retry_time, seconds)
         return wrapper
     return gen_wrapper
 

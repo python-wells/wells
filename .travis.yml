@@ -7,5 +7,10 @@ python:
   - "pypy"
   - "pypy3.5"
 install:
-  - pip install -r requirements-dev.txt
-script: tox
+  - if [ "$TRAVIS_PYTHON_VERSION" = '2.7' -o "$TRAVIS_PYTHON_VERSION" = "pypy" ]; then pip install "pylint>=1.9,<2.0"; else pip install pylint; fi
+  - pip install pytest pycodestyle
+
+script:
+  - pycodestyle --repeat --ignore=E202,E501,W504 wells
+  - pylint --disable=missing-docstring,invalid-name,global-statement,useless-object-inheritance wells
+  - py.test wells

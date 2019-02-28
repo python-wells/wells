@@ -105,7 +105,7 @@ def set_var(content, var_name, value, export=False):
             matched_export = mo.group(1)
             var = mo.group(2)
             current_value = parse_sh_value(mo.group(3))
-            if var == var_name:
+            if var == var_name:           # pylint: disable=no-else-return
                 if current_value == value:
                     return False, content + u'\n'
                 result.append(u"%s%s=%s" % (

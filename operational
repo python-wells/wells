@@ -1,15 +1,25 @@
 * COMMENT -*- mode: org -*-
 #+Date: 2017-08-30
-Time-stamp: <2017-08-30>
+Time-stamp: <2019-02-28>
 #+STARTUP: content
 * notes                                                               :entry:
 * later                                                               :entry:
 * current                                                             :entry:
 ** 
+* done                                                                :entry:
 ** 2017-08-30 choose a license and apply the license.
 - LGPL or Apache2 License
 - I want the code changes to the lib to be free.
   the software that uses the lib can be non-free.
 - 
-* done                                                                :entry:
+** 2019-02-28 fix style warning on latest pylint/pep8.
+- problems
+  - use fixed pytest version for py27 env. latest doesn't install.
+    pylint requires Python '>=3.4.*' but the running Python is 2.7.13
+
+    https://tox.readthedocs.io/en/latest/example/basic.html#compressing-dependency-matrix
+
+    fix local tox.ini
+    fix .travis.yml
+
 * wontfix                                                             :entry:
