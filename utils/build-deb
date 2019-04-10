@@ -1,0 +1,42 @@
+#!/bin/sh
+set -e
+
+print_help_and_exit() {
+	echo "Usage: ./utils/build-deb
+build python-wells and python3-wells deb"
+	exit 1
+}
+
+# main()
+if [ "$1" = "--help" ]; then
+	print_help_and_exit
+fi
+
+VERSION="1.5.0"
+DEB_PKG_NAME="python-wells"
+
+# build deb
+fpm -t deb -s python -n "$DEB_PKG_NAME" -v "$VERSION" -f \
+    --description "wells is a collection of python utilities" \
+    -d python2.7 \
+    --python-bin python2.7 \
+    --python-install-lib /usr/lib/python2.7/dist-packages \
+    -x '*__pycache__' \
+    -x '*.pyc' \
+    -x '*.pyo' \
+    -x '*.deb' \
+    .
+
+DEB_PKG_NAME="python3-wells"
+
+# build deb
+fpm -t deb -s python -n "$DEB_PKG_NAME" -v "$VERSION" -f \
+    --description "wells is a collection of python utilities" \
+    -d python3 \
+    --python-bin python3 \
+    --python-install-lib /usr/lib/python3/dist-packages \
+    -x '*__pycache__' \
+    -x '*.pyc' \
+    -x '*.pyo' \
+    -x '*.deb' \
+    .

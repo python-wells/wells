@@ -1,12 +1,27 @@
 * COMMENT -*- mode: org -*-
 #+Date: 2017-08-30
-Time-stamp: <2019-02-28>
+Time-stamp: <2019-04-10>
 #+STARTUP: content
 * notes                                                               :entry:
 * later                                                               :entry:
 * current                                                             :entry:
 ** 
 * done                                                                :entry:
+** 2019-04-10 build deb pkg for wells.
+- python-wells for python2.
+- distribute on apt.emacsos.com
+- test it on s01 VM.
+- dev
+  - how to tell fpm to build for python3?
+    --python-bin python3
+  - how to use /usr/lib/python2.7/dist-packages/?
+    default is /usr/local/lib/python2.7/dist-packages/
+
+    python -c 'from distutils.sysconfig import get_python_lib; print get_python_lib()'
+    --python-install-lib /usr/lib/python2.7/dist-packages
+    --python-install-lib /usr/lib/python3/dist-packages
+  - 
+
 ** 2017-08-30 choose a license and apply the license.
 - LGPL or Apache2 License
 - I want the code changes to the lib to be free.

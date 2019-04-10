@@ -16,6 +16,8 @@ upload: dist
 	$(VENV)/bin/twine upload dist/*
 build:
 
+deb:
+	./utils/build-deb
 bootstrap:
 	test -d $(VENV) || python3 -m venv $(VENV) || python2 -m virtualenv -q $(VENV)
 	$(PIP) install -q -r requirements-dev.txt
