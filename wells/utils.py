@@ -17,6 +17,9 @@ import functools
 import hmac
 import json
 from itertools import cycle, chain, repeat
+import platform
+import os
+import os.path
 
 from .py3utils import izip, newstr, basestring_type, IS_PY2
 
@@ -553,3 +556,21 @@ def to_json(obj, cls=BetterJsonEncoder, **kwargs):
 
     """
     return json.dumps(obj, cls=cls, **kwargs)
+
+
+def get_default_cache_dir():
+    """get platform based default cache dir.
+
+    on linux, this is $XDG_CACHE_HOME or ~/.cache;
+    on windows, this is %LOCALAPPDATA%;
+    on macOS, this is ~/Library/Caches.
+    on other system, it defaults to ~/.cache
+
+    """
+    if os.getenv("XDG_CACHE_HOME"):
+        return os.getenv("XDG_CACHE_HOME")
+    if os.getenv("LOCALAPPDATA"):
+        return os.getenv("LOCALAPPDATA")
+    if platform.mac_ver()[0]:
+        return os.path.expanduser('~/Library/Caches')
+    return os.path.expanduser('~/.cache')
