@@ -8,19 +8,19 @@ PYLINT = env PYTHONPATH=$(PYTHONPATH) $(VENV)/bin/pylint --disable=missing-docst
 PEP8 = env PYTHONPATH=$(PYTHONPATH) $(VENV)/bin/pycodestyle --repeat --ignore=E202,E501,W504
 
 default: test
-dist: bootstrap
+bootstrap:
+	test -d $(VENV) || python3 -m venv $(VENV) || python2 -m virtualenv -q $(VENV)
+	$(PIP) install -q -r requirements-dev.txt
+dist:
 	rm -rf dist/*
 	$(PYTHON) setup.py -q sdist
 	$(PYTHON) setup.py -q bdist_wheel --universal
 upload: dist
-	$(VENV)/bin/twine upload dist/*
+	docker run --rm -v "$(CURDIR)/dist":/dist sylecn/twine:buster twine upload /dist/*
 build:
 
 deb:
 	./utils/build-deb
-bootstrap:
-	test -d $(VENV) || python3 -m venv $(VENV) || python2 -m virtualenv -q $(VENV)
-	$(PIP) install -q -r requirements-dev.txt
 check: test
 pylint: bootstrap
 	$(PEP8) $(PYTHON_MODULES)

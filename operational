@@ -1,11 +1,22 @@
 * COMMENT -*- mode: org -*-
 #+Date: 2017-08-30
-Time-stamp: <2019-04-10>
+Time-stamp: <2020-01-27>
 #+STARTUP: content
 * notes                                                               :entry:
 * later                                                               :entry:
 * current                                                             :entry:
 ** 
+** 2020-01-27 "make upload" fails in gocd CI.
+- install twine dependency failed?
+
+  cryptography
+
+  --install-headers /var/lib/go-agent/pipelines/wells/.venv/include/site/python3.5/cryptography" failed with error code 1 in /tmp/pip-build-jmametaf/cryptography/
+
+  it requires gcc, which I don't have on server.
+
+- try run twine using docker.
+
 * done                                                                :entry:
 ** 2019-04-10 build deb pkg for wells.
 - python-wells for python2.
