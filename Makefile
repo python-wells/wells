@@ -16,7 +16,7 @@ dist: bootstrap
 	$(PYTHON) setup.py -q sdist
 	$(PYTHON) setup.py -q bdist_wheel --universal
 upload: dist
-	docker run --rm -v "$(CURDIR)/dist":/dist sylecn/twine:buster twine upload /dist/*
+	docker run --rm -v "$(CURDIR)/dist":/dist -e TWINE_USERNAME -e TWINE_PASSWORD sylecn/twine:buster twine upload /dist/*
 build:
 
 deb:
