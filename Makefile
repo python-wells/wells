@@ -11,7 +11,7 @@ default: test
 bootstrap:
 	test -d $(VENV) || python3 -m venv $(VENV) || python2 -m virtualenv -q $(VENV)
 	$(PIP) install -q -r requirements-dev.txt
-dist:
+dist: bootstrap
 	rm -rf dist/*
 	$(PYTHON) setup.py -q sdist
 	$(PYTHON) setup.py -q bdist_wheel --universal
