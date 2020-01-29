@@ -574,3 +574,21 @@ def get_default_cache_dir():
     if platform.mac_ver()[0]:
         return os.path.expanduser('~/Library/Caches')
     return os.path.expanduser('~/.cache')
+
+
+def get_default_config_dir():
+    """get platform based default config dir.
+
+    on linux, this is $XDG_CONFIG_HOME or ~/.config;
+    on windows, this is %APPDATA%;
+    on macOS, this is ~/Library/Application Support;
+    on other system, it defaults to ~/.config;
+
+    """
+    if os.getenv("XDG_CONFIG_HOME"):
+        return os.getenv("XDG_CONFIG_HOME")
+    if os.getenv("APPDATA"):
+        return os.getenv("APPDATA")
+    if platform.mac_ver()[0]:
+        return os.path.expanduser('~/Library/Application Support')
+    return os.path.expanduser('~/.config')

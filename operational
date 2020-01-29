@@ -1,8 +1,12 @@
 * COMMENT -*- mode: org -*-
 #+Date: 2017-08-30
-Time-stamp: <2020-01-27>
+Time-stamp: <2020-01-29>
 #+STARTUP: content
 * notes                                                               :entry:
+** 2020-01-29 macOS Key subdirectories of the Library directory
+https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html#//apple_ref/doc/uid/TP40010672-CH2-SW1
+used in utils.get_default_config_dir() and utils.get_default_cache_dir()
+
 * later                                                               :entry:
 * current                                                             :entry:
 ** 
