@@ -5,12 +5,43 @@ from __future__ import unicode_literals
 
 import datetime
 
-from .utils import (uniq, group, first, len_gen, gen_prefixes,
-                    is_valid_uuid, sha1sum, md5sum, hmac_sha256_hex,
-                    seconds, drop_prefix, string_to_list,
-                    ensure_str, ensure_byte, to_json)
+from .utils import uniq, group, first, len_gen, gen_prefixes
+from .utils import is_valid_uuid, sha1sum, md5sum, hmac_sha256_hex
+from .utils import seconds, drop_prefix, string_to_list
+from .utils import ensure_str, ensure_byte, to_json
 from .utils import flatten
 from .utils import now
+from .utils import is_valid_date
+
+
+def test_is_valid_date():
+    assert is_valid_date("2020-03-01")
+    assert not is_valid_date("2020-03-1")
+    assert not is_valid_date("2020-3-1")
+    assert not is_valid_date("20-12-01")
+    assert is_valid_date("1990-12-01")
+    assert not is_valid_date("2020-13-01")
+    assert not is_valid_date("2020-12-33")
+    assert not is_valid_date("2020-12-00")
+    assert not is_valid_date("")
+
+
+def test_is_valid_date_junk():
+    assert not is_valid_date("20201-12-00")
+    assert not is_valid_date("a2020-03-01")
+    assert not is_valid_date("abc")
+
+
+def test_is_valid_date_feb():
+    assert is_valid_date("2020-02-01")
+    assert is_valid_date("2020-02-29")
+    assert is_valid_date("2021-02-28")
+    assert not is_valid_date("2020-02-30")
+    assert not is_valid_date("2019-02-29")
+    assert is_valid_date("2000-02-29")
+    assert is_valid_date("1900-02-28")
+    assert not is_valid_date("1900-02-29")
+    assert not is_valid_date("2000-02-30")
 
 
 def test_now():

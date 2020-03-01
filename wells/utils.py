@@ -122,6 +122,23 @@ def yesterday():
     return d.isoformat()
 
 
+def is_valid_date(day):
+    """return date object if day is a valid date string in YYYY-MM-DD format.
+
+    Return False otherwise.
+
+    """
+    # Note: strptime accepts day like 2020-3-1, which is not accepted as valid
+    # date by this function. It requires proper zero padding.
+    pattern = re.compile(r'^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+    if not pattern.match(day):
+        return False
+    try:
+        return datetime.datetime.strptime(day, "%Y-%m-%d").date()
+    except ValueError:
+        return False
+
+
 def get_ts_microseconds():
     """return current timestamp in microsecond since Epoch.
 
